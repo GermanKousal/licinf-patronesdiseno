@@ -25,7 +25,5 @@ def main():
     ordenar.ordenar(arreglo)
 
     print(arreglo)
-    print('tu mama')
-
 
 main()
