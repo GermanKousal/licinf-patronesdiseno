@@ -1,43 +1,48 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 
 
 class Orden(ABC):
 
     # Public:
+    @abstractmethod
     def ordenar(self, arreglo, orden):
-        
-        n = len(arreglo)
-
-        for i in range(n):
-            for j in range (n - 1):
-                match orden:
-                    case 'ascendente':
-                        if arreglo[j] > arreglo[j+1]:
-                            self.__intercambiar(arreglo, j)
-                    
-                    case 'descendente':
-                        if arreglo[j] < arreglo[j+1]:
-                            self.__intercambiar(arreglo, j)
+        pass
     
-    # Private:
-    def __intercambiar(self, arreglo, j):
+    # Protected:
+    def _intercambiar(self, arreglo, j):
         aux = arreglo[j]
         arreglo[j] = arreglo[j+1]
         arreglo[j+1] = aux
 
 
 
+
 class OrdenAscendente(Orden):
 
     def ordenar(self, arreglo):
-        Orden.ordenar(self, arreglo, 'ascendente')
+                
+        n = len(arreglo)
+
+        for i in range(n):
+            for j in range (n - 1):
+                if arreglo[j] > arreglo[j+1]:
+                    super()._intercambiar(arreglo, j)
+    
+
 
 
 
 class OrdenDescendente(Orden):
     
     def ordenar(self, arreglo):
-        Orden.ordenar(self, arreglo, 'descendente')
+
+        n = len(arreglo)
+
+        for i in range(n):
+            for j in range (n - 1):
+                if arreglo[j] < arreglo[j+1]:
+                    super()._intercambiar(arreglo, j)
+    
 
 
 
