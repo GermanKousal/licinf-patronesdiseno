@@ -8,6 +8,7 @@ class Orden(ABC):
         pass
 
 
+
 class OrdenAscendente(Orden):
 
     def ordenar(self, arreglo_a_ordenar):
@@ -23,6 +24,18 @@ class OrdenAscendente(Orden):
 
 
 
+class OrdenDescendente(Orden):
+
+    def ordenar(self, arreglo_a_ordenar):
+        
+        n = len(arreglo_a_ordenar)
+
+        for i in range(n):
+            for j in range (n - 1):
+                if arreglo_a_ordenar[j] < arreglo_a_ordenar[j+1]:
+                    aux = arreglo_a_ordenar[j]
+                    arreglo_a_ordenar[j] = arreglo_a_ordenar[j+1]
+                    arreglo_a_ordenar[j+1] = aux
 
 
 
@@ -31,7 +44,10 @@ def main():
 
     ordenar = OrdenAscendente()
     ordenar.ordenar(arreglo)
+    print(arreglo)
 
+    ordenar = OrdenDescendente()
+    ordenar.ordenar(arreglo)
     print(arreglo)
 
 main()
