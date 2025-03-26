@@ -1,46 +1,71 @@
-from abc import ABC, abstractmethod
+from abc import ABC
 
 
 class Orden(ABC):
 
-    @abstractmethod
-    def ordenar(self, arreglo_a_ordenar):
-        pass
+    # Public:
+    def ordenar(self, arreglo, orden):
+        
+        n = len(arreglo)
+
+        for i in range(n):
+            for j in range (n - 1):
+                match orden:
+                    case 'ascendente':
+                        if arreglo[j] > arreglo[j+1]:
+                            self.__intercambiar(arreglo, j)
+                    
+                    case 'descendente':
+                        if arreglo[j] < arreglo[j+1]:
+                            self.__intercambiar(arreglo, j)
+    
+    # Private:
+    def __intercambiar(self, arreglo, j):
+        aux = arreglo[j]
+        arreglo[j] = arreglo[j+1]
+        arreglo[j+1] = aux
 
 
 
 class OrdenAscendente(Orden):
 
-    def ordenar(self, arreglo_a_ordenar):
-        
-        n = len(arreglo_a_ordenar)
-
-        for i in range(n):
-            for j in range (n - 1):
-                if arreglo_a_ordenar[j] > arreglo_a_ordenar[j+1]:
-                    aux = arreglo_a_ordenar[j]
-                    arreglo_a_ordenar[j] = arreglo_a_ordenar[j+1]
-                    arreglo_a_ordenar[j+1] = aux
+    def ordenar(self, arreglo):
+        Orden.ordenar(self, arreglo, 'ascendente')
 
 
 
 class OrdenDescendente(Orden):
-
-    def ordenar(self, arreglo_a_ordenar):
-        
-        n = len(arreglo_a_ordenar)
-
-        for i in range(n):
-            for j in range (n - 1):
-                if arreglo_a_ordenar[j] < arreglo_a_ordenar[j+1]:
-                    aux = arreglo_a_ordenar[j]
-                    arreglo_a_ordenar[j] = arreglo_a_ordenar[j+1]
-                    arreglo_a_ordenar[j+1] = aux
+    
+    def ordenar(self, arreglo):
+        Orden.ordenar(self, arreglo, 'descendente')
 
 
 
 def main():
-    arreglo = [2,5,8,1,0,21]
+
+    arreglo = list()
+
+    while True:
+        try:
+            item = input("Ingrese un numero ('-' para terminar): ").strip()
+            
+            if item == "-":
+                raise EOFError
+            
+            item = int(item)
+            arreglo.append(item)
+
+        except KeyError:
+            pass
+        
+        except ValueError:
+            print("Solo se puede ingresar numeros")
+        
+        except EOFError:
+            break
+        
+        else:
+            print(f"El arreglo ingresado es: {arreglo}")
 
     ordenar = OrdenAscendente()
     ordenar.ordenar(arreglo)
@@ -50,4 +75,5 @@ def main():
     ordenar.ordenar(arreglo)
     print(arreglo)
 
-main()
+if __name__ == "__main__":
+    main()
