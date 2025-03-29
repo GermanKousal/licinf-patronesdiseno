@@ -1,48 +1,27 @@
 from abc import ABC, abstractmethod
 
-
 class Orden(ABC):
-
-    # Public:
     @abstractmethod
-    def ordenar(self, arreglo, orden):
+    def ordenar(self, arreglo):
         pass
-    
-    # Protected:
-    def _intercambiar(self, arreglo, j):
-        aux = arreglo[j]
-        arreglo[j] = arreglo[j+1]
-        arreglo[j+1] = aux
-
-
-
 
 class OrdenAscendente(Orden):
-
     def ordenar(self, arreglo):
-                
         n = len(arreglo)
-
         for i in range(n):
-            for j in range (n - 1):
+            for j in range(0, n-1):
                 if arreglo[j] > arreglo[j+1]:
-                    super()._intercambiar(arreglo, j)
-    
-
-
-
+                    arreglo[j], arreglo[j+1] = arreglo[j+1], arreglo[j]
+        return arreglo
 
 class OrdenDescendente(Orden):
-    
     def ordenar(self, arreglo):
-
         n = len(arreglo)
-
         for i in range(n):
-            for j in range (n - 1):
+            for j in range(0, n-1):
                 if arreglo[j] < arreglo[j+1]:
-                    super()._intercambiar(arreglo, j)
-    
+                    arreglo[j], arreglo[j+1] = arreglo[j+1], arreglo[j]
+        return arreglo
 
 
 
@@ -72,13 +51,15 @@ def main():
         else:
             print(f"El arreglo ingresado es: {arreglo}")
 
-    ordenar = OrdenAscendente()
-    ordenar.ordenar(arreglo)
+    ordenarA = OrdenAscendente()
+    ordenarD = OrdenDescendente()
+    
+    ordenarA.ordenar(arreglo)
     print(arreglo)
 
-    ordenar = OrdenDescendente()
-    ordenar.ordenar(arreglo)
+    ordenarD.ordenar(arreglo)
     print(arreglo)
+
 
 if __name__ == "__main__":
     main()
