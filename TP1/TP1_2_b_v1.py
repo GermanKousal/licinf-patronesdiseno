@@ -89,9 +89,9 @@ class Carrito:
     # Public Methods
     def agregar_producto(self, producto: Producto) -> None:
         nuevo_estado = self.__estado_actual.agregar_producto()
-
-        if nuevo_estado == self.ESTADO_ACTIVADO:
-            self.__estado_actual = self.ESTADO_ACTIVADO
+        self.__cambiar_estado(nuevo_estado)
+        
+        if isinstance(self.__estado_actual, Activado):
             self.__productos.append(producto)
             print(f"Producto: {producto.nombre} agregado.")
         else:
@@ -110,7 +110,7 @@ class Carrito:
     
     # Private Methods
     def __cambiar_estado(self, nuevo_estado: Estado | None):
-        if nuevo_estado:
+        if nuevo_estado is not None:
             self.__estado_actual = nuevo_estado
 
 
