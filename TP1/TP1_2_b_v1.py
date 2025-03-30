@@ -71,7 +71,7 @@ class Carrito:
         # Attributes
 
         self.__estado = estado
-        self.__productos = [Producto]
+        self.__productos: list[Producto] = []
 
     # Methods
     def agregar_producto(self, producto: Producto):
