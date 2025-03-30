@@ -81,7 +81,7 @@ class Carrito:
 
     # Methods
     def agregar_producto(self, producto: Producto):
-        return False
+        pass
 
     def cancelar(self):
         pass
