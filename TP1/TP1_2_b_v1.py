@@ -76,7 +76,7 @@ class Carrito:
 
         # Instance Attributes
 
-        self.__estado_actual = Carrito.ESTADO_ACTIVO
+        self.__estado_actual: Estado = Carrito.ESTADO_ACTIVO
         self.__productos: list[Producto] = []
 
     # Methods
