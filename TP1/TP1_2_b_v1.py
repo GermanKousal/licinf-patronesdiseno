@@ -1,4 +1,4 @@
-from abc import ABC, abstractmethod
+from abc import ABC
 
 
 class Producto:
@@ -68,8 +68,8 @@ class Pagado(Estado):
 class Carrito:
 
     # Attributes
-    def __init__(self):
-        self.__estado: Estado = Activo()
+    def __init__(self, estado: Estado) -> None:
+        self.__estado = estado
         self.__productos = [Producto]
 
     # Methods
