@@ -3,15 +3,14 @@ from abc import ABC
 
 class Producto:
 
-    # Attributes
-    __nombre: str = ""
-    __precio: float = 0.0
+    def __init__(self, nombre: str, precio: float) -> None:
+
+        # Attributes
+
+        self.__nombre: str = nombre
+        self.__precio: float = precio
 
     # Methods
-
-    def __init__(self, nombre: str, precio: float):
-        self.__nombre = nombre
-        self.__precio = precio
 
     @property
     def nombre(self) -> str:
@@ -67,8 +66,10 @@ class Pagado(Estado):
 
 class Carrito:
 
-    # Attributes
     def __init__(self, estado: Estado) -> None:
+        
+        # Attributes
+        
         self.__estado = estado
         self.__productos = [Producto]
 
