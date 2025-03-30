@@ -25,8 +25,8 @@ class Producto:
 class Estado(ABC):
 
     # Methods
-    def agregar_producto(self) -> bool:
-        return False
+    def agregar_producto(self) -> Estado | None:
+        return None
 
     def cancelar(self) -> Estado | None:
         print("El carrito no puede cancelarse en su estado actual.")
@@ -44,8 +44,8 @@ class Estado(ABC):
 class Activado(Estado):
 
     # Methods
-    def agregar_producto(self) -> bool:
-        return True
+    def agregar_producto(self) -> Activado:
+        return Carrito.ESTADO_ACTIVADO
 
     def cancelar(self) -> Cancelado:
         print("El carrito ha sido Cancelado.")
@@ -59,8 +59,8 @@ class Activado(Estado):
 class Cancelado(Estado):
 
     # Methods
-    def agregar_producto(self) -> bool:
-        return False
+    def agregar_producto(self) -> Activado:
+        return Carrito.ESTADO_ACTIVADO
 
     def activar(self) -> Activado:
         print("El carrito ha sido activado.")
@@ -87,8 +87,17 @@ class Carrito:
         self.__productos: list[Producto] = []
 
     # Public Methods
-    def agregar_producto(self, producto: Producto):
-        pass
+    def agregar_producto(self, producto: Producto) -> None:
+        nuevo_estado = self.__estado_actual.agregar_producto()
+
+        if nuevo_estado == self.ESTADO_ACTIVADO:
+            self.__estado_actual = self.ESTADO_ACTIVADO
+            self.__productos.append(producto)
+            print(f"Producto: {producto.nombre} agregado.")
+        else:
+            print("No se puede agregar producto en el estado actual.")
+
+
 
     def cancelar(self) -> None:
         self.__cambiar_estado(self.__estado_actual.cancelar())
