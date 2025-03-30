@@ -1,3 +1,4 @@
+from __future__ import annotations
 from abc import ABC
 
 
@@ -5,7 +6,7 @@ class Producto:
 
     def __init__(self, nombre: str, precio: float) -> None:
 
-        # Attributes
+        # Instance Attributes
 
         self.__nombre: str = nombre
         self.__precio: float = precio
@@ -27,14 +28,17 @@ class Estado(ABC):
     def agregar_producto(self) -> bool:
         return False
 
-    def cancelar(self) -> None:
+    def cancelar(self) -> Estado | None:
         print("El carrito no puede cancelarse en su estado actual.")
+        return None
 
-    def pagar(self) -> None:
+    def pagar(self) -> Estado | None:
         print("El carrito no puede pagarse en su estado actual.")
+        return None
 
-    def activar(self) -> None:
+    def activar(self) -> Estado | None:
         print("El carrito no puede activarse en su estado actual.")
+        return None
 
 
 class Activo(Estado):
@@ -79,18 +83,23 @@ class Carrito:
         self.__estado_actual: Estado = Carrito.ESTADO_ACTIVO
         self.__productos: list[Producto] = []
 
-    # Methods
+    # Public Methods
     def agregar_producto(self, producto: Producto):
         pass
 
-    def cancelar(self):
-        pass
+    def cancelar(self) -> None:
+        self.__cambiar_estado(self.__estado_actual.cancelar())
 
-    def pagar(self):
-        pass
+    def pagar(self) -> None:
+        self.__cambiar_estado(self.__estado_actual.pagar())
 
-    def activar(self):
-        pass
+    def activar(self) -> None:
+        self.__cambiar_estado(self.__estado_actual.activar())
+    
+    # Private Methods
+    def __cambiar_estado(self, nuevo_estado: Estado | None):
+        if nuevo_estado:
+            self.__estado_actual = nuevo_estado
 
 
 def main() -> None:
