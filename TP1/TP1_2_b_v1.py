@@ -72,11 +72,11 @@ class Carrito:
     ESTADO_CANCELADO: Cancelado = Cancelado()
     ESTADO_PAGADO: Pagado = Pagado()
 
-    def __init__(self, estado: Estado = ESTADO_ACTIVO) -> None:
+    def __init__(self) -> None:
 
         # Instance Attributes
 
-        self.__estado_actual = estado
+        self.__estado_actual = Carrito.ESTADO_ACTIVO
         self.__productos: list[Producto] = []
 
     # Methods
