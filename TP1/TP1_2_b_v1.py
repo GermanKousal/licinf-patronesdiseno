@@ -41,27 +41,30 @@ class Estado(ABC):
         return None
 
 
-class Activo(Estado):
+class Activado(Estado):
 
     # Methods
     def agregar_producto(self) -> bool:
         return True
 
-    def cancelar(self):
-        pass
+    def cancelar(self) -> Cancelado:
+        print("El carrito ha sido Cancelado.")
+        return Carrito.ESTADO_CANCELADO
 
-    def pagar(self):
-        pass
+    def pagar(self) -> Pagado:
+        print("El carrito ha sido Pagado.")
+        return Carrito.ESTADO_PAGADO
 
 
 class Cancelado(Estado):
 
     # Methods
-    def agregar_producto(self):
-        pass
+    def agregar_producto(self) -> bool:
+        return False
 
-    def activar(self):
-        pass
+    def activar(self) -> Activado:
+        print("El carrito ha sido activado.")
+        return Carrito.ESTADO_ACTIVADO
 
 
 class Pagado(Estado):
@@ -72,7 +75,7 @@ class Carrito:
 
     # Class Atributes
 
-    ESTADO_ACTIVO: Activo = Activo()
+    ESTADO_ACTIVADO: Activado = Activado()
     ESTADO_CANCELADO: Cancelado = Cancelado()
     ESTADO_PAGADO: Pagado = Pagado()
 
@@ -80,7 +83,7 @@ class Carrito:
 
         # Instance Attributes
 
-        self.__estado_actual: Estado = Carrito.ESTADO_ACTIVO
+        self.__estado_actual: Estado = Carrito.ESTADO_ACTIVADO
         self.__productos: list[Producto] = []
 
     # Public Methods
