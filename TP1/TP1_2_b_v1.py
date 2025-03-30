@@ -1,17 +1,18 @@
 from abc import ABC, abstractmethod
 
+
 class Producto:
 
     # Attributes
     __nombre: str = ""
     __precio: float = 0.0
 
-
     # Methods
+
     def __init__(self, nombre: str, precio: float):
         self.__nombre = nombre
         self.__precio = precio
-    
+
     @property
     def nombre(self) -> str:
         return self.__nombre
@@ -24,39 +25,39 @@ class Producto:
 class Estado(ABC):
 
     # Methods
-    def agregar_producto() -> bool:
+    def agregar_producto(self) -> bool:
         return False
 
-    def cancelar():
+    def cancelar(self):
         pass
 
-    def pagar():
+    def pagar(self):
         pass
 
-    def activar():
+    def activar(self):
         pass
 
 
 class Activo(Estado):
 
     # Methods
-    def agregar_producto() -> bool:
+    def agregar_producto(self) -> bool:
         return True
 
-    def cancelar():
+    def cancelar(self):
         pass
 
-    def pagar():
+    def pagar(self):
         pass
 
 
 class Cancelado(Estado):
 
     # Methods
-    def agregar_producto():
+    def agregar_producto(self):
         pass
 
-    def activar():
+    def activar(self):
         pass
 
 
@@ -72,14 +73,14 @@ class Carrito:
         self.__productos = [Producto]
 
     # Methods
-    def agregar_producto(producto: Producto):
+    def agregar_producto(self, producto: Producto):
         return False
 
-    def cancelar():
+    def cancelar(self):
         pass
 
-    def pagar():
+    def pagar(self):
         pass
 
-    def activar():
+    def activar(self):
         pass
