@@ -27,14 +27,14 @@ class Estado(ABC):
     def agregar_producto(self) -> bool:
         return False
 
-    def cancelar(self):
-        pass
+    def cancelar(self) -> None:
+        print("El carrito no puede cancelarse en su estado actual.")
 
-    def pagar(self):
-        pass
+    def pagar(self) -> None:
+        print("El carrito no puede pagarse en su estado actual.")
 
-    def activar(self):
-        pass
+    def activar(self) -> None:
+        print("El carrito no puede activarse en su estado actual.")
 
 
 class Activo(Estado):
