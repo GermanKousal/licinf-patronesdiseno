@@ -67,9 +67,9 @@ class Pagado(Estado):
 class Carrito:
 
     def __init__(self, estado: Estado) -> None:
-        
+
         # Attributes
-        
+
         self.__estado = estado
         self.__productos = [Producto]
 
@@ -85,3 +85,16 @@ class Carrito:
 
     def activar(self):
         pass
+
+
+def main() -> None:
+
+    estado_activo: Activo = Activo()
+    estado_cancelado: Cancelado = Cancelado()
+    estado_pagado: Pagado = Pagado()
+
+    carrito: Carrito = Carrito(estado_activo)
+
+
+if __name__ == "__main__":
+    main()
