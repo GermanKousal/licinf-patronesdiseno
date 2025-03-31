@@ -65,7 +65,7 @@ class Activado(Estado):
 
     
     def activar(self, carrito: Carrito) -> None:
-        pass
+        print("No se puede activar el carrito: el carrito ya está activado.")
 
 
 class Cancelado(Estado):
@@ -89,7 +89,8 @@ class Cancelado(Estado):
 
     
     def activar(self, carrito: Carrito) -> None:
-        pass
+        carrito.__estado_actual = Carrito.ESTADO_ACTIVADO
+        print("El carrito fue activado.")
 
 
 class Pagado(Estado):
@@ -112,7 +113,7 @@ class Pagado(Estado):
 
     
     def activar(self, carrito: Carrito) -> None:
-        pass
+        print("No se puede activar el carrito: el carrito ya está pagado.")
 
 
 class Carrito:
@@ -141,10 +142,8 @@ class Carrito:
         pass
 
     def activar(self) -> None:
-        pass
+        self.__estado_actual.activar(self)
 
-    # Private Methods
-           
 
 
 def main() -> None:
