@@ -53,7 +53,8 @@ class Activado(Estado):
     # Methods
     
     def agregar_producto(self, carrito: Carrito, producto: Producto) -> None:
-        pass
+        carrito.__productos.append(producto)
+        print(f"Se agregó producto {producto.nombre} por ${producto.precio}")
     
     
     def cancelar(self, carrito: Carrito) -> None:
@@ -79,7 +80,8 @@ class Cancelado(Estado):
     # Methods
     
     def agregar_producto(self, carrito: Carrito, producto: Producto) -> None:
-        pass
+        carrito.activar()
+        carrito.agregar_producto(producto)
     
     
     def cancelar(self, carrito: Carrito) -> None:
@@ -103,7 +105,7 @@ class Pagado(Estado):
     # Methods
     
     def agregar_producto(self, carrito: Carrito, producto: Producto) -> None:
-        pass
+        print("No se pueden agregar mas productos al carrito: el carrito ya está PAGADO.")
     
     
     def cancelar(self, carrito: Carrito) -> None:
@@ -135,7 +137,7 @@ class Carrito:
 
     # Public Methods
     def agregar_producto(self, producto: Producto) -> None:
-        pass
+        self.__estado_actual.agregar_producto(self, producto)
 
     def cancelar(self) -> None:
         self.__estado_actual.cancelar(self)
