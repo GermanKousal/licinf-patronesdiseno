@@ -24,90 +24,95 @@ class Producto:
 
 class Estado(ABC):
 
+    def __init__(self) -> None:
+        self.__nombre: str = "Clase Abstracta Estado"
+
     # Methods
     @abstractmethod
     def agregar_producto(self, carrito: Carrito, producto: Producto) -> None:
         raise NotImplementedError
     
     @abstractmethod
-    def cancelar(self) -> None:
+    def cancelar(self, carrito: Carrito) -> None:
         raise NotImplementedError
 
     @abstractmethod
-    def pagar(self) -> None:
+    def pagar(self, carrito: Carrito) -> None:
         raise NotImplementedError
 
     @abstractmethod
-    def activar(self) -> None:
+    def activar(self, carrito: Carrito) -> None:
         raise NotImplementedError
 
 
 class Activado(Estado):
 
+    def __init__(self) -> None:
+        self.__nombre: str = "ACTIVADO"
+    
     # Methods
     
     def agregar_producto(self, carrito: Carrito, producto: Producto) -> None:
-        return None
+        pass
     
     
-    def cancelar(self) -> None:
-        print("El carrito no puede cancelarse en su estado actual.")
-        return None
+    def cancelar(self, carrito: Carrito) -> None:
+        pass
 
     
-    def pagar(self) -> None:
-        print("El carrito no puede pagarse en su estado actual.")
-        return None
+    def pagar(self, carrito: Carrito) -> None:
+        pass
 
     
-    def activar(self) -> None:
-        print("El carrito no puede activarse en su estado actual.")
-        return None
+    def activar(self, carrito: Carrito) -> None:
+        pass
 
 
 class Cancelado(Estado):
 
+        
+    def __init__(self) -> None:
+        self.__nombre: str = "CANCELADO"
+
     # Methods
     
     def agregar_producto(self, carrito: Carrito, producto: Producto) -> None:
-        return None
+        pass
     
     
-    def cancelar(self) -> None:
-        print("El carrito no puede cancelarse en su estado actual.")
-        return None
+    def cancelar(self, carrito: Carrito) -> None:
+        pass
 
     
-    def pagar(self) -> None:
-        print("El carrito no puede pagarse en su estado actual.")
-        return None
+    def pagar(self, carrito: Carrito) -> None:
+        pass
 
     
-    def activar(self) -> None:
-        print("El carrito no puede activarse en su estado actual.")
-        return None
+    def activar(self, carrito: Carrito) -> None:
+        pass
 
 
 class Pagado(Estado):
+
+    def __init__(self) -> None:
+        self.__nombre: str = "PAGADO"
+    
     # Methods
     
     def agregar_producto(self, carrito: Carrito, producto: Producto) -> None:
-        return None
+        pass
     
     
-    def cancelar(self) -> None:
-        print("El carrito no puede cancelarse en su estado actual.")
-        return None
+    def cancelar(self, carrito: Carrito) -> None:
+        pass
 
     
-    def pagar(self) -> None:
-        print("El carrito no puede pagarse en su estado actual.")
-        return None
+    def pagar(self, carrito: Carrito) -> None:
+        pass
 
     
-    def activar(self) -> None:
-        print("El carrito no puede activarse en su estado actual.")
-        return None
+    def activar(self, carrito: Carrito) -> None:
+        pass
 
 
 class Carrito:
@@ -127,21 +132,19 @@ class Carrito:
 
     # Public Methods
     def agregar_producto(self, producto: Producto) -> None:
-        self.__estado_actual.agregar_producto(self, producto)
+        pass
 
     def cancelar(self) -> None:
-        self.__cambiar_estado(self.__estado_actual.cancelar())
+        pass
 
     def pagar(self) -> None:
-        self.__cambiar_estado(self.__estado_actual.pagar())
+        pass
 
     def activar(self) -> None:
-        self.__cambiar_estado(self.__estado_actual.activar())
+        pass
 
     # Private Methods
-    def __cambiar_estado(self, nuevo_estado: Estado | None):
-        if nuevo_estado is not None:
-            self.__estado_actual = nuevo_estado
+           
 
 
 def main() -> None:
@@ -153,23 +156,6 @@ def main() -> None:
 
     # Crear carrito en estado Activado
     carrito = Carrito()
-
-    print("\n*** Agregar producto 1 en estado Activado ***")
-    carrito.agregar_producto(producto1)  # Debería agregar producto 1
-
-    print("\n*** Cambiar estado a Cancelado y agregar producto 2 ***")
-    carrito.cancelar()  # Cambia el estado a Cancelado
-    # Debería activar el carrito y luego agregar producto 2
-    carrito.agregar_producto(producto2)
-
-    print("\n*** Cambiar estado a Pagado y agregar producto 3 ***")
-    carrito.pagar()  # Cambia el estado a Pagado
-    # No debería permitir agregar productos
-    carrito.agregar_producto(producto3)
-
-    print("\n*** Cambiar estado a Activado y agregar producto 3 ***")
-    carrito.activar()  # Cambia el estado a Activado
-    carrito.agregar_producto(producto3)  # Debería agregar producto 3
 
 
 if __name__ == "__main__":
