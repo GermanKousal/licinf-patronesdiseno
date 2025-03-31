@@ -27,19 +27,19 @@ class Estado(ABC):
     # Methods
     @abstractmethod
     def agregar_producto(self, carrito: Carrito, producto: Producto) -> None:
-        return None
+        raise NotImplementedError
     
     @abstractmethod
     def cancelar(self) -> None:
-        return None
+        raise NotImplementedError
 
     @abstractmethod
     def pagar(self) -> None:
-        return None
+        raise NotImplementedError
 
     @abstractmethod
     def activar(self) -> None:
-        return None
+        raise NotImplementedError
 
 
 class Activado(Estado):
