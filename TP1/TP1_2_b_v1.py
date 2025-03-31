@@ -57,7 +57,9 @@ class Activado(Estado):
     
     
     def cancelar(self, carrito: Carrito) -> None:
-        pass
+        carrito.__productos.clear()
+        carrito.__estado_actual = Carrito.ESTADO_CANCELADO
+        print("Carrito CANCELADO.")
 
     
     def pagar(self, carrito: Carrito) -> None:
@@ -65,7 +67,7 @@ class Activado(Estado):
 
     
     def activar(self, carrito: Carrito) -> None:
-        print("No se puede activar el carrito: el carrito ya está activado.")
+        print("No se puede activar el carrito: el carrito ya está ACTIVADO.")
 
 
 class Cancelado(Estado):
@@ -81,7 +83,7 @@ class Cancelado(Estado):
     
     
     def cancelar(self, carrito: Carrito) -> None:
-        pass
+        print("No se puede cancelar el carrito: el carrito ya está CANCELADO.")
 
     
     def pagar(self, carrito: Carrito) -> None:
@@ -90,7 +92,7 @@ class Cancelado(Estado):
     
     def activar(self, carrito: Carrito) -> None:
         carrito.__estado_actual = Carrito.ESTADO_ACTIVADO
-        print("El carrito fue activado.")
+        print("Carrito ACTIVADO")
 
 
 class Pagado(Estado):
@@ -105,7 +107,7 @@ class Pagado(Estado):
     
     
     def cancelar(self, carrito: Carrito) -> None:
-        pass
+        print("No se puede cancelar el carrito: el carrito ya está PAGADO.")
 
     
     def pagar(self, carrito: Carrito) -> None:
@@ -136,7 +138,7 @@ class Carrito:
         pass
 
     def cancelar(self) -> None:
-        pass
+        self.__estado_actual.cancelar(self)
 
     def pagar(self) -> None:
         pass
