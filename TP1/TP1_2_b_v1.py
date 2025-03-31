@@ -152,7 +152,6 @@ class Carrito:
 
 
 def main() -> None:
-
     # Crear productos
     producto1 = Producto("Producto 1", 100.0)
     producto2 = Producto("Producto 2", 200.0)
@@ -161,6 +160,26 @@ def main() -> None:
     # Crear carrito en estado Activado
     carrito = Carrito()
 
+    # Agregar productos en estado Activado
+    print("\n--- Agregando productos en estado ACTIVADO ---")
+    carrito.agregar_producto(producto1)
+    carrito.agregar_producto(producto2)
+
+    # Cancelar carrito
+    print("\n--- Cancelando carrito ---")
+    carrito.cancelar()
+
+    # Intentar agregar un producto en estado Cancelado (debería activarse primero)
+    print("\n--- Intentando agregar producto en estado CANCELADO ---")
+    carrito.agregar_producto(producto3)
+
+    # Pagar carrito
+    print("\n--- Pagando carrito ---")
+    carrito.pagar()
+
+    # Intentar agregar producto en estado Pagado (debería fallar)
+    print("\n--- Intentando agregar producto en estado PAGADO ---")
+    carrito.agregar_producto(producto1)
 
 if __name__ == "__main__":
     main()
