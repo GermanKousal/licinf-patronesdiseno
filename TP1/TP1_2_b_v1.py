@@ -8,24 +8,24 @@ class Producto:
 
         # Instance Attributes
 
-        self.__nombre: str = nombre
-        self.__precio: float = precio
+        self._nombre: str = nombre
+        self._precio: float = precio
 
     # Methods
 
     @property
     def nombre(self) -> str:
-        return self.__nombre
+        return self._nombre
 
     @property
     def precio(self) -> float:
-        return self.__precio
+        return self._precio
 
 
 class Estado(ABC):
 
     def __init__(self) -> None:
-        self.__nombre: str = "Clase Abstracta Estado"
+        self._nombre: str = "Clase Abstracta Estado"
 
     # Methods
     @abstractmethod
@@ -48,17 +48,17 @@ class Estado(ABC):
 class Activado(Estado):
 
     def __init__(self) -> None:
-        self.__nombre: str = "ACTIVADO"
+        self._nombre: str = "ACTIVADO"
 
     # Methods
 
     def agregar_producto(self, carrito: Carrito, producto: Producto) -> None:
-        carrito.__productos.append(producto)
+        carrito._productos.append(producto)
         print(f"Se agregó producto {producto.nombre} por ${producto.precio}")
 
     def cancelar(self, carrito: Carrito) -> None:
-        carrito.__productos.clear()
-        carrito.__estado_actual = Carrito.ESTADO_CANCELADO
+        carrito._productos.clear()
+        carrito._estado_actual = Carrito.ESTADO_CANCELADO
         print("Carrito CANCELADO.")
 
     def pagar(self, carrito: Carrito) -> None:
@@ -66,7 +66,7 @@ class Activado(Estado):
 
         print("--- Lista de productos ---")
 
-        for producto in carrito.__productos:
+        for producto in carrito._productos:
             total += producto.precio
             print(f"{producto.nombre}: ${producto.precio}")
 
@@ -74,7 +74,9 @@ class Activado(Estado):
 
         print(f"Total a pagar: ${total}")
 
-        carrito.__estado_actual = Carrito.ESTADO_PAGADO
+        carrito._estado_actual = Carrito.ESTADO_PAGADO
+
+        print("Carrito PAGADO.")
 
     def activar(self, carrito: Carrito) -> None:
         print("No se puede activar el carrito: el carrito ya está ACTIVADO.")
@@ -83,7 +85,7 @@ class Activado(Estado):
 class Cancelado(Estado):
 
     def __init__(self) -> None:
-        self.__nombre: str = "CANCELADO"
+        self._nombre: str = "CANCELADO"
 
     # Methods
 
@@ -98,14 +100,14 @@ class Cancelado(Estado):
         print("No se puede pagar el carrito: el carrito está CANCELADO.")
 
     def activar(self, carrito: Carrito) -> None:
-        carrito.__estado_actual = Carrito.ESTADO_ACTIVADO
+        carrito._estado_actual = Carrito.ESTADO_ACTIVADO
         print("Carrito ACTIVADO")
 
 
 class Pagado(Estado):
 
     def __init__(self) -> None:
-        self.__nombre: str = "PAGADO"
+        self._nombre: str = "PAGADO"
 
     # Methods
 
@@ -134,21 +136,21 @@ class Carrito:
 
         # Instance Attributes
 
-        self.__estado_actual: Estado = Carrito.ESTADO_ACTIVADO
-        self.__productos: list[Producto] = []
+        self._estado_actual: Estado = Carrito.ESTADO_ACTIVADO
+        self._productos: list[Producto] = []
 
     # Public Methods
     def agregar_producto(self, producto: Producto) -> None:
-        self.__estado_actual.agregar_producto(self, producto)
+        self._estado_actual.agregar_producto(carrito = self, producto = producto)
 
     def cancelar(self) -> None:
-        self.__estado_actual.cancelar(self)
+        self._estado_actual.cancelar(self)
 
     def pagar(self) -> None:
-        self.__estado_actual.pagar(self)
+        self._estado_actual.pagar(self)
 
     def activar(self) -> None:
-        self.__estado_actual.activar(self)
+        self._estado_actual.activar(self)
 
 
 def main() -> None:
