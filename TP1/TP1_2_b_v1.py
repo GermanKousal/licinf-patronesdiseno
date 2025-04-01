@@ -24,9 +24,6 @@ class Producto:
 
 class Estado(ABC):
 
-    def __init__(self) -> None:
-        self._nombre: str = "Clase Abstracta Estado"
-
     # Methods
     @abstractmethod
     def agregar_producto(self, carrito: Carrito, producto: Producto) -> None:
@@ -46,9 +43,6 @@ class Estado(ABC):
 
 
 class Activado(Estado):
-
-    def __init__(self) -> None:
-        self._nombre: str = "ACTIVADO"
 
     # Methods
 
@@ -84,9 +78,6 @@ class Activado(Estado):
 
 class Cancelado(Estado):
 
-    def __init__(self) -> None:
-        self._nombre: str = "CANCELADO"
-
     # Methods
 
     def agregar_producto(self, carrito: Carrito, producto: Producto) -> None:
@@ -105,9 +96,6 @@ class Cancelado(Estado):
 
 
 class Pagado(Estado):
-
-    def __init__(self) -> None:
-        self._nombre: str = "PAGADO"
 
     # Methods
 
@@ -141,7 +129,7 @@ class Carrito:
 
     # Public Methods
     def agregar_producto(self, producto: Producto) -> None:
-        self._estado_actual.agregar_producto(carrito = self, producto = producto)
+        self._estado_actual.agregar_producto(carrito=self, producto=producto)
 
     def cancelar(self) -> None:
         self._estado_actual.cancelar(self)
@@ -182,6 +170,7 @@ def main() -> None:
     # Intentar agregar producto en estado Pagado (debería fallar)
     print("\n--- Intentando agregar producto en estado PAGADO ---")
     carrito.agregar_producto(producto1)
+
 
 if __name__ == "__main__":
     main()
