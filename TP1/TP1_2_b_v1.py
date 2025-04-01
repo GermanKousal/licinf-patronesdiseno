@@ -8,18 +8,18 @@ class Producto:
 
         # Instance Attributes
 
-        self._nombre: str = nombre
-        self._precio: float = precio
+        self.__nombre: str = nombre
+        self.__precio: float = precio
 
     # Methods
 
     @property
     def nombre(self) -> str:
-        return self._nombre
+        return self.__nombre
 
     @property
     def precio(self) -> float:
-        return self._precio
+        return self.__precio
 
 
 class Estado(ABC):
