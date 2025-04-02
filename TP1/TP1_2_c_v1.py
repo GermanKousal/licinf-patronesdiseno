@@ -40,7 +40,7 @@ class Estado(ABC):
     @abstractmethod
     def activar(self, carrito: Carrito) -> None:
         raise NotImplementedError
-    
+
     @abstractmethod
     def archivar(self, carrito: Carrito) -> None:
         raise NotImplementedError
@@ -101,7 +101,7 @@ class Cancelado(Estado):
     def activar(self, carrito: Carrito) -> None:
         carrito._estado_actual = Carrito.ESTADO_ACTIVADO
         print("Carrito ACTIVADO")
-    
+
     def archivar(self, carrito: Carrito) -> None:
         print("No se puede archivar el carrito: el carrito está CANCELADO.")
 
@@ -121,7 +121,7 @@ class Pagado(Estado):
 
     def activar(self, carrito: Carrito) -> None:
         print("No se puede activar el carrito: el carrito está PAGADO.")
-    
+
     def archivar(self, carrito: Carrito) -> None:
         print("No se puede archivar el carrito: el carrito está PAGADO.")
 
@@ -131,21 +131,22 @@ class Archivado(Estado):
     # Methods
 
     def agregar_producto(self, carrito: Carrito, producto: Producto) -> None:
-        #print("No se pueden agregar mas productos al carrito: el carrito está PAGADO.")
-        pass
+        carrito.activar()
+        carrito.agregar_producto(producto)
 
     def cancelar(self, carrito: Carrito) -> None:
-        #print("No se puede cancelar el carrito: el carrito está PAGADO.")
-        pass
+        carrito._productos.clear()
+        carrito._estado_actual = Carrito.ESTADO_CANCELADO
+        print("Carrito CANCELADO.")
 
     def pagar(self, carrito: Carrito) -> None:
-        #print("No se puede pagar el carrito: el carrito ya está PAGADO.")
-        pass
+        carrito.activar()
+        carrito.pagar()
 
     def activar(self, carrito: Carrito) -> None:
-        #print("No se puede activar el carrito: el carrito está PAGADO.")
-        pass
-    
+        carrito._estado_actual = Carrito.ESTADO_ACTIVADO
+        print("Carrito ACTIVADO")
+
     def archivar(self, carrito: Carrito) -> None:
         print("No se puede activar el carrito: el carrito ya está ARCHIVADO.")
 
@@ -178,7 +179,7 @@ class Carrito:
 
     def activar(self) -> None:
         self._estado_actual.activar(self)
-    
+
     def archivar(self) -> None:
         self._estado_actual.archivar(self)
 
