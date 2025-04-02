@@ -193,26 +193,41 @@ def main() -> None:
     # Crear carrito en estado Activado
     carrito = Carrito()
 
-    # Agregar productos en estado Activado
+    # Agregar productos en estado ACTIVADO
     print("\n--- Agregando productos en estado ACTIVADO ---")
     carrito.agregar_producto(producto1)
     carrito.agregar_producto(producto2)
 
-    # Cancelar carrito
-    print("\n--- Cancelando carrito ---")
-    carrito.cancelar()
+    # Archivar carrito
+    print("\n--- Archivando carrito ---")
+    carrito.archivar()
 
-    # Intentar agregar un producto en estado Cancelado (debería activarse primero)
-    print("\n--- Intentando agregar producto en estado CANCELADO ---")
+    # Intentar agregar un producto en estado ARCHIVADO (debe activarse automáticamente)
+    print("\n--- Intentando agregar producto en estado ARCHIVADO ---")
     carrito.agregar_producto(producto3)
 
-    # Pagar carrito
-    print("\n--- Pagando carrito ---")
+    # Intentar pagar en estado ARCHIVADO (debe activarse automáticamente y pagar)
+    print("\n--- Intentando pagar en estado ARCHIVADO ---")
     carrito.pagar()
 
-    # Intentar agregar producto en estado Pagado (debería fallar)
-    print("\n--- Intentando agregar producto en estado PAGADO ---")
-    carrito.agregar_producto(producto1)
+    # Crear un nuevo carrito y cancelarlo
+    print("\n--- Creando nuevo carrito y cancelándolo ---")
+    carrito_cancelado = Carrito()
+    carrito_cancelado.cancelar()
+
+    # Intentar archivar un carrito CANCELADO (debe fallar)
+    print("\n--- Intentando archivar carrito CANCELADO ---")
+    carrito_cancelado.archivar()
+
+    # Crear otro carrito y pagarlo
+    print("\n--- Creando nuevo carrito y pagándolo ---")
+    carrito_pagado = Carrito()
+    carrito_pagado.agregar_producto(producto1)
+    carrito_pagado.pagar()
+
+    # Intentar archivar un carrito PAGADO (debe fallar)
+    print("\n--- Intentando archivar carrito PAGADO ---")
+    carrito_pagado.archivar()
 
 
 if __name__ == "__main__":
