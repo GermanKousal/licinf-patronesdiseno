@@ -34,7 +34,7 @@ Principales desafíos y soluciones:
    - La implementación evita estructuras de control complejas (`if` anidados) dentro de `Carrito`.
    - Cada estado maneja su propia lógica de manera sencilla y directa.
 
-7. **Principio YAGNI (You Ain’t Gonna Need It)**
+7. **Principio YAGNI (You Ain't Gonna Need It)**
    - Inicialmente se mantuvo el sistema sin el estado `Archivado` hasta que fue requerido.
    - No se agregaron métodos o estructuras innecesarias en `Estado` antes de ser necesarias.
 
