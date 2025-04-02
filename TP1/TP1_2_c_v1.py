@@ -80,7 +80,8 @@ class Activado(Estado):
         print("No se puede activar el carrito: el carrito ya está ACTIVADO.")
 
     def archivar(self, carrito: Carrito) -> None:
-        pass
+        carrito._estado_actual = Carrito.ESTADO_ARCHIVADO
+        print("Carrito ARCHIVADO")
 
 
 class Cancelado(Estado):
@@ -102,7 +103,7 @@ class Cancelado(Estado):
         print("Carrito ACTIVADO")
     
     def archivar(self, carrito: Carrito) -> None:
-        pass
+        print("No se puede archivar el carrito: el carrito está CANCELADO.")
 
 
 class Pagado(Estado):
@@ -122,7 +123,7 @@ class Pagado(Estado):
         print("No se puede activar el carrito: el carrito está PAGADO.")
     
     def archivar(self, carrito: Carrito) -> None:
-        pass
+        print("No se puede archivar el carrito: el carrito está PAGADO.")
 
 
 class Archivado(Estado):
@@ -146,7 +147,7 @@ class Archivado(Estado):
         pass
     
     def archivar(self, carrito: Carrito) -> None:
-        pass
+        print("No se puede activar el carrito: el carrito ya está ARCHIVADO.")
 
 
 class Carrito:
