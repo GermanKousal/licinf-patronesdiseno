@@ -1,6 +1,48 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 
+"""
+Resumen del ejercicio:
+
+Este ejercicio consistió en modelar un sistema de carrito de compras con
+diferentes estados aplicando principios de diseño SOLID, KISS, DRY y YAGNI.
+
+Principales desafíos y soluciones:
+
+1. **Encapsulación y Delegación de Responsabilidad (Single Responsibility - SRP)**
+   - Se creó una clase abstracta `Estado` que define el comportamiento de los estados del carrito.
+   - Cada estado (`Activado`, `Cancelado`, `Pagado`, `Archivado`) encapsula su propia lógica de negocio.
+   - Esto evita una clase `Carrito` con múltiples condicionales, reduciendo su responsabilidad.
+
+2. **Cumplimiento del Principio Abierto/Cerrado (OCP)**
+   - La adición del estado `Archivado` demostró la capacidad del sistema para extenderse sin modificar `Carrito`.
+   - Sin embargo, cada vez que se agrega un nuevo estado, es necesario modificar todas las subclases de `Estado`
+     para incluir los nuevos métodos, lo que puede ser mejorado en una futura refactorización.
+
+3. **Principio de Sustitución de Liskov (LSP)**
+   - Todas las subclases de `Estado` pueden reemplazar a `Estado` sin afectar el funcionamiento del sistema.
+
+4. **Principio de Inversión de Dependencias (DIP)**
+   - `Carrito` no depende de implementaciones concretas de los estados, sino de la abstracción `Estado`.
+   - Los estados concretos se asignan a través de constantes de clase (`Carrito.ESTADO_ACTIVADO`, etc.).
+
+5. **Aplicación del Principio DRY (Don't Repeat Yourself)**
+   - Se encapsularon comportamientos repetidos en los métodos de `Estado`.
+   - Se utilizó `_estado_actual` para cambiar de estado de forma centralizada.
+
+6. **Principio KISS (Keep It Simple, Stupid)**
+   - La implementación evita estructuras de control complejas (`if` anidados) dentro de `Carrito`.
+   - Cada estado maneja su propia lógica de manera sencilla y directa.
+
+7. **Principio YAGNI (You Ain’t Gonna Need It)**
+   - Inicialmente se mantuvo el sistema sin el estado `Archivado` hasta que fue requerido.
+   - No se agregaron métodos o estructuras innecesarias en `Estado` antes de ser necesarias.
+
+### **Posible Mejora Futura**
+   - Actualmente, cada vez que se agrega un nuevo método en `Estado`, todas las subclases deben implementarlo.
+   - Se podría definir implementaciones genéricas en `Estado` para evitar modificar todas las subclases 
+     cuando se agrega un nuevo método, facilitando la extensibilidad del sistema.
+"""
 
 class Producto:
 
