@@ -4,6 +4,8 @@ from abc import ABC, abstractmethod
 
 class Conexion:
 
+    __INSTANCIA_UNICA: Conexion | None = None
+
     def __init__(self, nombre_servidor: str, nombre_usuario: str, contrasenha: str, nombre_DB: str) -> None:
 
         # Instance Attributes
