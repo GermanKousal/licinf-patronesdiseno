@@ -41,7 +41,7 @@ class Conexion:
             self.__nombre_usuario: str = "nombre_usuario"
             self.__contrasenha: str = "contrasenha"
             self.__nombre_DB: str = "nombre_DB"
-            self._inicializado = True  # Marca que ya se inicializó
+            self._inicializado: bool = True  # Marca que ya se inicializó
 
     # Methods
 
