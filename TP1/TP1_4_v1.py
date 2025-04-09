@@ -28,11 +28,21 @@ class ElementoSistema(ABC):
 
 
 class Archivo(ElementoSistema):
-    pass
+
+    def __init__(self, nombre, tamaño) -> None:
+        super().__init__(nombre, tamaño)
+
+    def mostrar_tipo(self):
+        pass
 
 
 class Directorio(ElementoSistema):
-    pass
+
+    def __init__(self, nombre, tamaño) -> None:
+        tamaño = 32
+        super().__init__(nombre, tamaño)
+
+        self._elementos: list[ElementoSistema] | None = None
 
 
 def main() -> None:
