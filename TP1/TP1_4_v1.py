@@ -5,6 +5,15 @@ from abc import ABC, abstractmethod
 class ElementoSistema(ABC):
     pass
 
+
+class Archivo(ElementoSistema):
+    pass
+
+
+class Directorio(ElementoSistema):
+    pass
+
+
 def main() -> None:
     pass
 
