@@ -14,6 +14,18 @@ class ElementoSistema(ABC):
     def obtener_tamaño(self) -> int:
         return self._tamaño
 
+    def copiar(self):
+        pass
+
+    def borrar(self):
+        pass
+
+    def renombrar(self):
+        pass
+
+    def abrir(seld):
+        pass
+
 
 class Archivo(ElementoSistema):
     pass
