@@ -36,8 +36,7 @@ class Archivo(ElementoSistema):
         super().__init__(nombre)
 
     def copiar(self) -> Archivo:
-        # Impementar adecuadamente!
-        return Archivo("", 0)
+        return Archivo(self._nombre, self._tamaño)
 
     def borrar(self) -> None:
         pass
@@ -57,7 +56,8 @@ class Directorio(ElementoSistema):
     def __init__(self, nombre: str, elementos: list[ElementoSistema] | None = None) -> None:
         super().__init__(nombre)
 
-        self._elementos: list[ElementoSistema] = elementos if elementos is not None else []
+        self._elementos: list[ElementoSistema] = elementos if elementos is not None else [
+        ]
 
     def copiar(self) -> Directorio:
         # Impementar adecuadamente!
