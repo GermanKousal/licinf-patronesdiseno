@@ -12,17 +12,17 @@ class ElementoSistema(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def borrar(self):
+    def borrar(self) -> None:
         raise NotImplementedError
 
     @abstractmethod
-    def renombrar(self, _nuevo_nombre: str):
+    def renombrar(self, _nuevo_nombre: str) -> None:
         raise NotImplementedError
 
     @abstractmethod
-    def abrir(self):
+    def abrir(self) -> None:
         raise NotImplementedError
-    
+
     @abstractmethod
     def tamaño(self) -> int:
         raise NotImplementedError
@@ -32,10 +32,24 @@ class Archivo(ElementoSistema):
 
     def __init__(self, nombre: str, tamaño: int) -> None:
         self._tamaño: int = tamaño
+        self._extension: str = nombre.split(".")[-1]
         super().__init__(nombre)
 
-    def mostrar_tipo(self):
+    def copiar(self) -> Archivo:
+        # Impementar adecuadamente!
+        return Archivo("", 0)
+
+    def borrar(self) -> None:
         pass
+
+    def renombrar(self, _nuevo_nombre: str) -> None:
+        pass
+
+    def abrir(self) -> None:
+        pass
+
+    def tamaño(self) -> int:
+        return self._tamaño
 
 
 class Directorio(ElementoSistema):
@@ -44,6 +58,29 @@ class Directorio(ElementoSistema):
         super().__init__(nombre)
 
         self._elementos: list[ElementoSistema] | None = elementos
+
+    def copiar(self) -> Directorio:
+        # Impementar adecuadamente!
+        return Directorio("")
+
+    def borrar(self) -> None:
+        pass
+
+    def renombrar(self, _nuevo_nombre: str) -> None:
+        pass
+
+    def abrir(self) -> None:
+        pass
+
+    def tamaño(self) -> int:
+        # Implementar adecuadamente!
+        return 32
+
+    def agregar(elemento: ElementoSistema) -> None:
+        pass
+
+    def quitar(elemento: ElementoSistema) -> None:
+        pass
 
 
 def main() -> None:
