@@ -83,7 +83,10 @@ class Directorio(ElementoSistema):
             print("El elemento ya se encuentra en el directorio")
 
     def quitar(self, elemento: ElementoSistema) -> None:
-        pass
+        if elemento in self._elementos:
+            self._elementos.remove(elemento)
+        else:
+            print("El elemento no se encuentra en el directorio")
 
 
 def main() -> None:
