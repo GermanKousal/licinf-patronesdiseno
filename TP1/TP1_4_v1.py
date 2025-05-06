@@ -57,7 +57,7 @@ class Directorio(ElementoSistema):
     def __init__(self, nombre: str, elementos: list[ElementoSistema] | None = None) -> None:
         super().__init__(nombre)
 
-        self._elementos: list[ElementoSistema] | None = elementos
+        self._elementos: list[ElementoSistema] = elementos if elementos is not None else []
 
     def copiar(self) -> Directorio:
         # Impementar adecuadamente!
@@ -76,10 +76,10 @@ class Directorio(ElementoSistema):
         # Implementar adecuadamente!
         return 32
 
-    def agregar(elemento: ElementoSistema) -> None:
+    def agregar(self, elemento: ElementoSistema) -> None:
         pass
 
-    def quitar(elemento: ElementoSistema) -> None:
+    def quitar(self, elemento: ElementoSistema) -> None:
         pass
 
 
