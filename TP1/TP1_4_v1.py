@@ -7,13 +7,6 @@ class ElementoSistema(ABC):
     def __init__(self, nombre: str) -> None:
         self._nombre = nombre
 
-    def mostrar_nombre(self) -> str:
-        return self._nombre
-
-    @abstractmethod
-    def obtener_tamaño(self) -> int:
-        raise NotImplementedError
-
     @abstractmethod
     def copiar(self):
         raise NotImplementedError
@@ -28,6 +21,10 @@ class ElementoSistema(ABC):
 
     @abstractmethod
     def abrir(self):
+        raise NotImplementedError
+    
+    @abstractmethod
+    def tamaño(self) -> int:
         raise NotImplementedError
 
 
