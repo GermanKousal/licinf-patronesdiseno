@@ -77,7 +77,10 @@ class Directorio(ElementoSistema):
         return 32
 
     def agregar(self, elemento: ElementoSistema) -> None:
-        pass
+        if elemento not in self._elementos:
+            self._elementos.append(elemento)
+        else:
+            print("El elemento ya se encuentra en el directorio")
 
     def quitar(self, elemento: ElementoSistema) -> None:
         pass
