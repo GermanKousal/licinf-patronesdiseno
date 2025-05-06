@@ -4,33 +4,41 @@ from abc import ABC, abstractmethod
 
 class ElementoSistema(ABC):
 
-    def __init__(self, nombre: str, tamaño: int) -> None:
+    def __init__(self, nombre: str) -> None:
         self._nombre = nombre
-        self._tamaño: int = tamaño
 
     def mostrar_nombre(self) -> str:
         return self._nombre
 
+    @abstractmethod
     def obtener_tamaño(self) -> int:
-        return self._tamaño
+        raise NotImplementedError
 
+    @abstractmethod
     def copiar(self):
-        pass
+        raise NotImplementedError
 
+    @abstractmethod
     def borrar(self):
-        pass
+        raise NotImplementedError
 
-    def renombrar(self):
-        pass
+    @abstractmethod
+    def renombrar(self, _nuevo_nombre: str):
+        raise NotImplementedError
 
-    def abrir(seld):
-        pass
+    @abstractmethod
+    def abrir(self):
+        raise NotImplementedError
 
 
 class Archivo(ElementoSistema):
 
-    def __init__(self, nombre, tamaño) -> None:
-        super().__init__(nombre, tamaño)
+    def __init__(self, nombre: str, tamaño: int) -> None:
+        self._tamaño: int = tamaño
+        super().__init__(nombre)
+
+    def obtener_tamaño(self):
+        return super().obtener_tamaño()
 
     def mostrar_tipo(self):
         pass
@@ -38,11 +46,10 @@ class Archivo(ElementoSistema):
 
 class Directorio(ElementoSistema):
 
-    def __init__(self, nombre, tamaño) -> None:
-        tamaño = 32
-        super().__init__(nombre, tamaño)
+    def __init__(self, nombre: str, elementos: list[ElementoSistema] | None = None) -> None:
+        super().__init__(nombre)
 
-        self._elementos: list[ElementoSistema] | None = None
+        self._elementos: list[ElementoSistema] | None = elementos
 
 
 def main() -> None:
