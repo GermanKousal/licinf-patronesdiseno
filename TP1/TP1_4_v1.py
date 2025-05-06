@@ -8,7 +8,7 @@ class ElementoSistema(ABC):
         self._nombre = nombre
 
     @abstractmethod
-    def copiar(self):
+    def copiar(self) -> ElementoSistema:
         raise NotImplementedError
 
     @abstractmethod
@@ -33,9 +33,6 @@ class Archivo(ElementoSistema):
     def __init__(self, nombre: str, tamaño: int) -> None:
         self._tamaño: int = tamaño
         super().__init__(nombre)
-
-    def obtener_tamaño(self):
-        return super().obtener_tamaño()
 
     def mostrar_tipo(self):
         pass
