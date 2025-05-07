@@ -16,7 +16,7 @@ class ElementoSistema(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def renombrar(self, _nuevo_nombre: str) -> None:
+    def renombrar(self, nombre: str) -> None:
         raise NotImplementedError
 
     @abstractmethod
@@ -39,13 +39,15 @@ class Archivo(ElementoSistema):
         return Archivo(self._nombre, self._tamaño)
 
     def borrar(self) -> None:
+        # Liberar memoria y otras tareas de mantenimiento antes de borrar objeto
         pass
 
-    def renombrar(self, _nuevo_nombre: str) -> None:
-        pass
+    def renombrar(self, nombre: str) -> None:
+        self._nombre = nombre
+        self._extension = nombre.split(".")[-1]
 
     def abrir(self) -> None:
-        pass
+        print(f"Este archivo se abre con un programa que acepte la extension {self._extension}")
 
     def tamaño(self) -> int:
         return self._tamaño
@@ -60,7 +62,7 @@ class Directorio(ElementoSistema):
         ]
 
     def copiar(self) -> Directorio:
-        # Impementar adecuadamente!
+        # Implementar adecuadamente!
         return Directorio("")
 
     def borrar(self) -> None:
