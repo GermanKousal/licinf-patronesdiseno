@@ -8,6 +8,9 @@ class ElementoSistema(ABC):
         self._nombre = nombre
         self._contenedor: Directorio | None = contenedor
 
+    def _asignar_contenedor(self, contenedor: Directorio) -> None:
+        self._contenedor = contenedor
+
     @abstractmethod
     def copiar(self) -> ElementoSistema:
         raise NotImplementedError
@@ -59,6 +62,8 @@ class Directorio(ElementoSistema):
 
         self._elementos: list[ElementoSistema] = elementos if elementos is not None else []
 
+   
+
     def copiar(self) -> Directorio:
         # Impementar adecuadamente!
         return Directorio("")
@@ -80,7 +85,7 @@ class Directorio(ElementoSistema):
         if elemento not in self._elementos:
             if elemento._contenedor is not None:
                 elemento._contenedor.quitar(elemento)
-            elemento._contenedor = self
+            elemento._asignar_contenedor(self)
             self._elementos.append(elemento)
         else:
             print("El elemento ya se encuentra en el directorio")
