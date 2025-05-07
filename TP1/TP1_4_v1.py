@@ -47,7 +47,8 @@ class Archivo(ElementoSistema):
         self._extension = nombre.split(".")[-1]
 
     def abrir(self) -> None:
-        print(f"Este archivo se abre con un programa que acepte la extension {self._extension}")
+        print(
+            f"Este archivo se abre con un programa que acepte la extension {self._extension}")
 
     def tamaño(self) -> int:
         return self._tamaño
@@ -62,24 +63,31 @@ class Directorio(ElementoSistema):
         ]
 
     def copiar(self) -> Directorio:
-        # Implementar adecuadamente!
-        return Directorio("")
+        elementos: list[ElementoSistema] = []
+
+        for elemento in self._elementos:
+            elementos.append(elemento.copiar())
+
+        return Directorio(self._nombre, elementos)
 
     def borrar(self) -> None:
-        pass
+        for elemento in self._elementos:
+            elemento.borrar()
+            self._elementos.remove(elemento)
 
     def renombrar(self, nombre: str) -> None:
         self._nombre = nombre
 
     def abrir(self) -> None:
-        pass
+        for elemento in self._elementos:
+            print(elemento._nombre)
 
     def tamaño(self) -> int:
-        suma = 32   # Tamaño de un Directorio vacío
-        
+        suma: int = 32   # Tamaño de un Directorio vacío
+
         for elemento in self._elementos:
-            suma =+ elemento.tamaño()
-        
+            suma = + elemento.tamaño()
+
         return suma
 
     def agregar(self, elemento: ElementoSistema) -> None:
