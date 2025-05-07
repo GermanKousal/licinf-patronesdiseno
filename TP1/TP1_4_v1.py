@@ -30,13 +30,14 @@ class ElementoSistema(ABC):
 
 class Archivo(ElementoSistema):
 
-    def __init__(self, nombre: str, tamaño: int) -> None:
+    def __init__(self, nombre: str, tamaño: int, contenedor: Directorio | None = None) -> None:
         self._tamaño: int = tamaño
         self._extension: str = nombre.split(".")[-1]
+        self._contenedor: Directorio | None = contenedor 
         super().__init__(nombre)
 
     def copiar(self) -> Archivo:
-        return Archivo(self._nombre, self._tamaño)
+        return Archivo(self._nombre, self._tamaño, self._contenedor)
 
     def borrar(self) -> None:
         pass
