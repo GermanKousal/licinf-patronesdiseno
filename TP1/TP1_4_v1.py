@@ -60,9 +60,8 @@ class Directorio(ElementoSistema):
     def __init__(self, nombre: str, elementos: list[ElementoSistema] | None = None, contenedor: Directorio | None = None) -> None:
         super().__init__(nombre, contenedor)
 
-        self._elementos: list[ElementoSistema] = elementos if elementos is not None else []
-
-   
+        self._elementos: list[ElementoSistema] = elementos if elementos is not None else [
+        ]
 
     def copiar(self) -> Directorio:
         # Impementar adecuadamente!
