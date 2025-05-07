@@ -37,7 +37,7 @@ class Archivo(ElementoSistema):
         self._extension: str = nombre.split(".")[-1]
 
     def copiar(self) -> Archivo:
-        return Archivo(self._nombre, self._tamaño, self._contenedor)
+        return Archivo(self._nombre, self._tamaño)
 
     def borrar(self) -> None:
         pass
@@ -54,10 +54,10 @@ class Archivo(ElementoSistema):
 
 class Directorio(ElementoSistema):
 
-    def __init__(self, nombre: str, elementos: list[ElementoSistema] = [], contenedor: Directorio | None = None) -> None:
+    def __init__(self, nombre: str, elementos: list[ElementoSistema] | None = None, contenedor: Directorio | None = None) -> None:
         super().__init__(nombre, contenedor)
 
-        self._elementos: list[ElementoSistema] = elementos
+        self._elementos: list[ElementoSistema] = elementos if elementos is not None else []
 
     def copiar(self) -> Directorio:
         # Impementar adecuadamente!
