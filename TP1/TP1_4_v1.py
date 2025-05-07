@@ -68,15 +68,19 @@ class Directorio(ElementoSistema):
     def borrar(self) -> None:
         pass
 
-    def renombrar(self, _nuevo_nombre: str) -> None:
-        pass
+    def renombrar(self, nombre: str) -> None:
+        self._nombre = nombre
 
     def abrir(self) -> None:
         pass
 
     def tamaño(self) -> int:
-        # Implementar adecuadamente!
-        return 32
+        suma = 32   # Tamaño de un Directorio vacío
+        
+        for elemento in self._elementos:
+            suma =+ elemento.tamaño()
+        
+        return suma
 
     def agregar(self, elemento: ElementoSistema) -> None:
         if elemento not in self._elementos:
