@@ -73,7 +73,7 @@ class Directorio(ElementoSistema):
     def borrar(self) -> None:
         for elemento in self._elementos:
             elemento.borrar()
-            self._elementos.remove(elemento)
+        self._elementos.clear()
 
     def renombrar(self, nombre: str) -> None:
         self._nombre = nombre
@@ -86,7 +86,7 @@ class Directorio(ElementoSistema):
         suma: int = 32   # Tamaño de un Directorio vacío
 
         for elemento in self._elementos:
-            suma = + elemento.tamaño()
+            suma += elemento.tamaño()
 
         return suma
 
