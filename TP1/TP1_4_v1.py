@@ -40,7 +40,7 @@ class Archivo(ElementoSistema):
 
     def borrar(self) -> None:
         # Liberar memoria y otras tareas de mantenimiento antes de borrar objeto
-        pass
+        print(f"{self._nombre} fue borrado.")
 
     def renombrar(self, nombre: str) -> None:
         self._nombre = nombre
