@@ -4,12 +4,8 @@ from abc import ABC, abstractmethod
 
 class ElementoSistema(ABC):
 
-    def __init__(self, nombre: str, contenedor: Directorio | None) -> None:
+    def __init__(self, nombre: str) -> None:
         self._nombre = nombre
-        self._contenedor: Directorio | None = contenedor
-
-    def _asignar_contenedor(self, contenedor: Directorio) -> None:
-        self._contenedor = contenedor
 
     @abstractmethod
     def copiar(self) -> ElementoSistema:
@@ -34,8 +30,8 @@ class ElementoSistema(ABC):
 
 class Archivo(ElementoSistema):
 
-    def __init__(self, nombre: str, tamaño: int, contenedor: Directorio | None = None) -> None:
-        super().__init__(nombre, contenedor)
+    def __init__(self, nombre: str, tamaño: int) -> None:
+        super().__init__(nombre)
         self._tamaño: int = tamaño
         self._extension: str = nombre.split(".")[-1]
 
@@ -57,8 +53,8 @@ class Archivo(ElementoSistema):
 
 class Directorio(ElementoSistema):
 
-    def __init__(self, nombre: str, elementos: list[ElementoSistema] | None = None, contenedor: Directorio | None = None) -> None:
-        super().__init__(nombre, contenedor)
+    def __init__(self, nombre: str, elementos: list[ElementoSistema] | None = None) -> None:
+        super().__init__(nombre)
 
         self._elementos: list[ElementoSistema] = elementos if elementos is not None else [
         ]
@@ -82,9 +78,6 @@ class Directorio(ElementoSistema):
 
     def agregar(self, elemento: ElementoSistema) -> None:
         if elemento not in self._elementos:
-            if elemento._contenedor is not None:
-                elemento._contenedor.quitar(elemento)
-            elemento._asignar_contenedor(self)
             self._elementos.append(elemento)
         else:
             print("El elemento ya se encuentra en el directorio")
