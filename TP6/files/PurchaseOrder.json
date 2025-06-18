@@ -1,0 +1,36 @@
+{
+  "PurchaseOrder": { 
+		"PurchaseOrderNumber": 8947 ,
+        "OrderDate": "25-05-10"
+	},
+   "EstimatedDeliveryDate": "2025-05-15" ,
+   "Seller":{
+			"Sid": 7892145 ,
+			"Name": "Patrones2025"
+   },
+   "Client":{
+			"Cid": 1234567 ,
+			"Name": "Cristina Werenitzky" ,
+			"Street": "Av. Independencia 1800" ,
+			"City": "San Miguel de Tucuman" ,
+			"ZIP": 4000 ,
+			"Country": "Argentina"
+   },
+   "QuantityProducts": 2 ,
+   "Items":[
+      {
+         "ItemID": "159-BB" ,
+         "ProductName": "Mini Proyector Gadnic" ,
+ 		 "Quantity": 1 ,
+		 "UPrice": 120000.00 
+      },
+      {
+         "ItemID": "778-CA" ,
+         "ProductName": "Blink 53-023380 Indoor" ,
+		 "Quantity": 4 ,
+ 		 "UPrice": 243050.00
+      }
+   ], 
+   "DeliveryNotes": "Entregar mercaderia en Dpto Cs. de Computacion - Block 2 - PB" ,
+   "Comments": "La factura debe ser B o C a nombre del Dpto Cs. de Computacion - CUIT: 30-54667024-0 - IVA excento"
+}

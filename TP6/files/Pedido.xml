@@ -1,0 +1,30 @@
+<?xml version='1.0'?>
+<PedidoDeCompra>
+  <NumeroDePedido>8947</NumeroDePedido>
+  <FechaPedido>"25-05-10"</FechaPedido>
+  <DatosCliente>
+    <ID>1234567</Id>
+    <Nombre>'Cristina Werenitzky'</Nombre>
+    <Direccion>'Av. Independencia 1800, Block 2 - PB'</Direccion>
+    <Ciudad>'San Miguel de Tucuman - Tucuman'</Ciudad>
+	<Pais>'Argentina'</Pais>
+    <CP>4000</CP>
+  </DatosCliente>
+  <CantidadDeProductos> 2</CantidadDeProductos>
+  <ProductosComprados>
+    <Producto> 
+	  <Codigo>'159-BB'</Codigo>
+      <NombreDelProducto>'Mini Proyector Gadnic'</NombreDelProducto>
+      <Cantidad>1</Cantidad>
+      <PrecioUnitario>120000</PrecioUnitario>
+    </Producto>
+    <Producto>
+	  <Codigo>'778-CA'</Codigo>
+      <NombreDelProducto>'Blink 53-023380 Indoor'</NombreDelProducto>
+      <Cantidad>4</Cantidad>
+      <PrecioUnitario>243050</PrecioUnitario>
+    </Producto>
+  </ProductosComprados>
+  <NotasDeEnvio>'Entregar mercaderia en Dpto Cs. de Computacion - Block 2 - PB'</NotasDeEnvio>
+  <Comentarios>'La factura debe ser B o C a nombre del Dpto Cs. de Computacion - CUIT: 30-54667024-0 - IVA excento'</Comentarios>
+</PedidoDeCompra>
