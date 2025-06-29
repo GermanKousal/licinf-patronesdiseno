@@ -13,6 +13,27 @@ class Estado(ABC):
         print("No se puede activar en este estado.")
 
 
+class Activada(Estado):
+    def desactivar(self):
+        ...
+
+
+class Desactivada(Estado):
+    def activar(self):
+        ...
+
+    def configurar(self):
+        ...
+
+
+class Configuracion(Estado):
+    def activar(self):
+        ...
+
+    def desactivar(self):
+        ...
+
+
 class CajaFuerte:
     ...
 
