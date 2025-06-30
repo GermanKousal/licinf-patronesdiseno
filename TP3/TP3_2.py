@@ -35,7 +35,15 @@ class Configuracion(Estado):
 
 
 class CajaFuerte:
-    ...
+    def activar(self):
+        ...
+
+    def desactivar(self):
+        ...
+
+    def configurar(self):
+        ...
+         
 
 
 def main() -> None:
