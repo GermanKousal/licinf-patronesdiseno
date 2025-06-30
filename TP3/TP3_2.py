@@ -35,6 +35,11 @@ class Configuracion(Estado):
 
 
 class CajaFuerte:
+
+    def __init__(self, PIN: int = 0):
+        _estado: Estado = Desactivada()
+        _PIN: int = PIN
+
     def activar(self):
         ...
 
@@ -43,7 +48,12 @@ class CajaFuerte:
 
     def configurar(self):
         ...
-         
+
+    def _cambiar_estado(self, estado: Estado):
+        _estado = estado
+
+    def _cambiar_PIN(self, PIN: int):
+        _PIN = PIN
 
 
 def main() -> None:
