@@ -3,35 +3,44 @@ from abc import ABC, abstractmethod
 
 
 class Estado(ABC):
-    def activar(self):
+    def activar(self, caja_fuerte: CajaFuerte):
         print("No se puede activar en este estado.")
 
-    def desactivar(self):
+    def desactivar(self, caja_fuerte: CajaFuerte):
         print("No se puede desactivar en este estado.")
 
-    def configurar(self):
+    def configurar(self, caja_fuerte: CajaFuerte):
         print("No se puede configurar en este estado.")
+    
+    def _mensaje_cambio_estado(self, desde: str, hacia: str):
+        print(f"{desde} -> {hacia}")
 
 
 class Activada(Estado):
-    def desactivar(self):
-        ...
+    def desactivar(self, caja_fuerte: CajaFuerte):
+        self._mensaje_cambio_estado("ACTIVADA", "DESACTIVADA")
+        caja_fuerte._cambiar_estado(Desactivada())
+
 
 
 class Desactivada(Estado):
-    def activar(self):
-        ...
+    def activar(self, caja_fuerte: CajaFuerte):
+        self._mensaje_cambio_estado("DESACTIVADA", "ACTIVADA")
+        caja_fuerte._cambiar_estado(Activada())
 
-    def configurar(self):
-        ...
+    def configurar(self, caja_fuerte: CajaFuerte):
+        self._mensaje_cambio_estado("DESACTIVADA", "CONFIGURACION")
+        caja_fuerte._cambiar_estado(Configuracion())
 
 
 class Configuracion(Estado):
-    def activar(self):
-        ...
+    def activar(self, caja_fuerte: CajaFuerte):
+        self._mensaje_cambio_estado("CONFIGURACION", "ACTIVADA")
+        caja_fuerte._cambiar_estado(Activada())
 
-    def desactivar(self):
-        ...
+    def desactivar(self, caja_fuerte: CajaFuerte):
+        self._mensaje_cambio_estado("CONFIGURACION", "DESACTIVADA")
+        caja_fuerte._cambiar_estado(Desactivada())
 
 
 class CajaFuerte:
