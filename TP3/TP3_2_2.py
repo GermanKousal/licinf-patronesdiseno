@@ -19,16 +19,16 @@ El diseño mantiene los principios de bajo acoplamiento y alta cohesión a trav�
 """
 
 
-
 class Estado(ABC):
-    def activar(self, caja_fuerte: CajaFuerte, PIN: int) -> None:
-        print("No se puede activar en este estado.")
+    def activar(self, caja_fuerte, PIN): self._accion_invalida("activar")
 
-    def desactivar(self, caja_fuerte: CajaFuerte, PIN: int) -> None:
-        print("No se puede desactivar en este estado.")
+    def desactivar(self, caja_fuerte, PIN): self._accion_invalida("desactivar")
 
-    def configurar(self, caja_fuerte: CajaFuerte, nuevo_PIN: int) -> None:
-        print("No se puede configurar en este estado.")
+    def configurar(self, caja_fuerte,
+                   nuevo_PIN): self._accion_invalida("configurar")
+
+    def _accion_invalida(self, accion: str):
+        print(f"No se puede {accion} en este estado.")
 
     def _mensaje_cambio_estado(self, desde: str, hacia: str) -> None:
         print(f"{desde} -> {hacia}")
