@@ -7,10 +7,10 @@ class Estado(ABC):
         print("No se puede activar en este estado.")
 
     def desactivar(self):
-        print("No se puede activar en este estado.")
+        print("No se puede desactivar en este estado.")
 
     def configurar(self):
-        print("No se puede activar en este estado.")
+        print("No se puede configurar en este estado.")
 
 
 class Activada(Estado):
