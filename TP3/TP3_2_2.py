@@ -2,13 +2,22 @@ from __future__ import annotations
 from abc import ABC
 
 """
-Extensión del modelo de Caja Fuerte: incorporación del estado BLOQUEADA.
+Modelo extendido de Caja Fuerte con control de intentos e incorporación del estado BLOQUEADA.
 
-Este código continúa la implementación anterior, agregando una nueva fase al ciclo de estados:
-- BLOQUEADA: en este estado, la caja fuerte solo permite la operación de desactivarse.
+Este código continúa la implementación anterior del sistema de caja fuerte, basado en el Patrón State.
+Se ha agregado una nueva fase al ciclo de vida del sistema:
 
-Se mantiene la estructura basada en el Patrón State.
+- BLOQUEADA: si se fallan 3 intentos consecutivos al intentar desactivar una caja en estado ACTIVADA,
+  la caja entra automáticamente en estado BLOQUEADA. En este estado solo se permite desactivarla,
+  siempre que se ingrese el PIN correcto. Al hacerlo, se retorna al estado DESACTIVADA y se reinicia
+  el contador de intentos fallidos.
+
+También se introdujo una lógica de control de intentos en el estado ACTIVADA, donde se lleva la cuenta
+de los intentos fallidos de desactivación. Esto refuerza la seguridad del sistema.
+
+El diseño mantiene los principios de bajo acoplamiento y alta cohesión a través del Patrón State.
 """
+
 
 
 class Estado(ABC):
@@ -138,6 +147,20 @@ def main() -> None:
     caja.activar(5678)
 
     print("\n--- Desactivar con PIN nuevo ---")
+    caja.desactivar(5678)
+
+    print("\n--- Activar con PIN nuevo ---")
+    caja.activar(5678)
+
+    print("\n--- Forzar BLOQUEO ---")
+    caja.desactivar(0000)
+    caja.desactivar(1111)
+    caja.desactivar(2222)
+
+    print("\n--- Intentar desactivar BLOQUEADA con PIN incorrecto ---")
+    caja.desactivar(9999)
+
+    print("\n--- Desactivar BLOQUEADA con PIN correcto ---")
     caja.desactivar(5678)
 
 
