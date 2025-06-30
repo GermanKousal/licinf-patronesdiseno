@@ -26,20 +26,25 @@ class Estado(ABC):
 
     def _validar_PIN(self, caja_fuerte: CajaFuerte, PIN: int) -> bool:
         return True if caja_fuerte._PIN == PIN else False
-    
+
     def bloquear(self, caja_fuerte: CajaFuerte):
         self._mensaje_cambio_estado("", "BLOQUEADA")
         caja_fuerte._cambiar_estado(Bloqueada())
 
 
-
 class Activada(Estado):
     def desactivar(self, caja_fuerte: CajaFuerte, PIN: int) -> None:
         if self._validar_PIN(caja_fuerte, PIN):
+            caja_fuerte._intentos_fallidos = 0  # Reiniciar contador si es correcto
             self._mensaje_cambio_estado("ACTIVADA", "DESACTIVADA")
             caja_fuerte._cambiar_estado(Desactivada())
         else:
-            print("PIN incorrecto")
+            caja_fuerte._intentos_fallidos += 1
+            print(
+                f"PIN incorrecto. Intentos fallidos: {caja_fuerte._intentos_fallidos}")
+            if caja_fuerte._intentos_fallidos >= 3:
+                self._mensaje_cambio_estado("ACTIVADA", "BLOQUEADA")
+                caja_fuerte._cambiar_estado(Bloqueada())
 
 
 class Desactivada(Estado):
@@ -71,15 +76,18 @@ class Configuracion(Estado):
         caja_fuerte._cambiar_PIN(nuevo_PIN)
         print("Nuevo PIN configurado.")
 
+
 class Bloqueada(Estado):
     def desactivar(self, caja_fuerte: CajaFuerte, PIN: int) -> None:
         ...
+
 
 class CajaFuerte:
 
     def __init__(self, PIN: int = 0) -> None:
         self._estado: Estado = Desactivada()
         self._PIN: int = PIN
+        self._intentos_fallidos: int = 0
 
     def activar(self, PIN: int) -> None:
         self._estado.activar(self, PIN)
