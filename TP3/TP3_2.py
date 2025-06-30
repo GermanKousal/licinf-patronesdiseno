@@ -11,7 +11,7 @@ class Estado(ABC):
 
     def configurar(self, caja_fuerte: CajaFuerte):
         print("No se puede configurar en este estado.")
-    
+
     def _mensaje_cambio_estado(self, desde: str, hacia: str):
         print(f"{desde} -> {hacia}")
 
@@ -20,7 +20,6 @@ class Activada(Estado):
     def desactivar(self, caja_fuerte: CajaFuerte):
         self._mensaje_cambio_estado("ACTIVADA", "DESACTIVADA")
         caja_fuerte._cambiar_estado(Desactivada())
-
 
 
 class Desactivada(Estado):
@@ -46,23 +45,23 @@ class Configuracion(Estado):
 class CajaFuerte:
 
     def __init__(self, PIN: int = 0):
-        _estado: Estado = Desactivada()
-        _PIN: int = PIN
+        self._estado: Estado = Desactivada()
+        self._PIN: int = PIN
 
     def activar(self):
-        self._estado.activar()
+        self._estado.activar(self)
 
     def desactivar(self):
-        self._estado.desactivar()
+        self._estado.desactivar(self)
 
     def configurar(self):
-        self._estado.configurar()
+        self._estado.configurar(self)
 
     def _cambiar_estado(self, estado: Estado):
-        _estado = estado
+        self._estado = estado
 
     def _cambiar_PIN(self, PIN: int):
-        _PIN = PIN
+        self._PIN = PIN
 
 
 def main() -> None:
