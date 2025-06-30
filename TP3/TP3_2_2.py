@@ -26,6 +26,11 @@ class Estado(ABC):
 
     def _validar_PIN(self, caja_fuerte: CajaFuerte, PIN: int) -> bool:
         return True if caja_fuerte._PIN == PIN else False
+    
+    def bloquear(self, caja_fuerte: CajaFuerte):
+        self._mensaje_cambio_estado("", "BLOQUEADA")
+        caja_fuerte._cambiar_estado(Bloqueada())
+
 
 
 class Activada(Estado):
@@ -66,6 +71,9 @@ class Configuracion(Estado):
         caja_fuerte._cambiar_PIN(nuevo_PIN)
         print("Nuevo PIN configurado.")
 
+class Bloqueada(Estado):
+    def desactivar(self, caja_fuerte: CajaFuerte, PIN: int) -> None:
+        ...
 
 class CajaFuerte:
 
