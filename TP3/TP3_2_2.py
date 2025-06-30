@@ -79,7 +79,12 @@ class Configuracion(Estado):
 
 class Bloqueada(Estado):
     def desactivar(self, caja_fuerte: CajaFuerte, PIN: int) -> None:
-        ...
+        if self._validar_PIN(caja_fuerte, PIN):
+            self._mensaje_cambio_estado("BLOQUEADA", "DESACTIVADA")
+            caja_fuerte._cambiar_estado(Desactivada())
+            caja_fuerte._intentos_fallidos = 0  # Resetear el contador
+        else:
+            print("PIN incorrecto. Caja fuerte permanece BLOQUEADA.")
 
 
 class CajaFuerte:
