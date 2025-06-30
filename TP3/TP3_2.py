@@ -21,14 +21,20 @@ class Estado(ABC):
 
 class Activada(Estado):
     def desactivar(self, caja_fuerte: CajaFuerte, PIN: int) -> None:
-        self._mensaje_cambio_estado("ACTIVADA", "DESACTIVADA")
-        caja_fuerte._cambiar_estado(Desactivada())
+        if self._validar_PIN(caja_fuerte, PIN):
+            self._mensaje_cambio_estado("ACTIVADA", "DESACTIVADA")
+            caja_fuerte._cambiar_estado(Desactivada())
+        else:
+            print("PIN incorrecto")
 
 
 class Desactivada(Estado):
     def activar(self, caja_fuerte: CajaFuerte, PIN: int) -> None:
-        self._mensaje_cambio_estado("DESACTIVADA", "ACTIVADA")
-        caja_fuerte._cambiar_estado(Activada())
+        if self._validar_PIN(caja_fuerte, PIN):
+            self._mensaje_cambio_estado("DESACTIVADA", "ACTIVADA")
+            caja_fuerte._cambiar_estado(Activada())
+        else:
+            print("PIN incorrecto")
 
     def configurar(self, caja_fuerte: CajaFuerte, nuevo_PIN: int) -> None:
         self._mensaje_cambio_estado("DESACTIVADA", "CONFIGURACION")
@@ -43,6 +49,9 @@ class Configuracion(Estado):
     def desactivar(self, caja_fuerte: CajaFuerte, PIN: int) -> None:
         self._mensaje_cambio_estado("CONFIGURACION", "DESACTIVADA")
         caja_fuerte._cambiar_estado(Desactivada())
+    
+    def configurar(self, caja_fuerte: CajaFuerte, nuevo_PIN: int) -> None:
+        caja_fuerte._cambiar_PIN(nuevo_PIN)
 
 
 class CajaFuerte:
