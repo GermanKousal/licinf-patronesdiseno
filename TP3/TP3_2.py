@@ -41,13 +41,13 @@ class CajaFuerte:
         _PIN: int = PIN
 
     def activar(self):
-        ...
+        self._estado.activar()
 
     def desactivar(self):
-        ...
+        self._estado.desactivar()
 
     def configurar(self):
-        ...
+        self._estado.configurar()
 
     def _cambiar_estado(self, estado: Estado):
         _estado = estado
