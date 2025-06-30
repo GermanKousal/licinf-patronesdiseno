@@ -68,8 +68,8 @@ class CajaFuerte:
 
 
 def main() -> None:
-    pass
-
+    caja = CajaFuerte()
+    print("Hecho.")
 
 if __name__ == "__main__":
     main()
